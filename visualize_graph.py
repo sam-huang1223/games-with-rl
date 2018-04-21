@@ -1,14 +1,13 @@
 """
-DrawTree input format:
-root = root node
-children = set of {child 1, child 2, (child 3, child 3 - child 1, child 3 - child 2)...}
-node_attributes = list of [NodeAttributes object 1, NodeAttributes object 2...]
+REQUIRES SETUP - see README
 """
 
 import os
 
 import pydotplus as pydot
 from itertools import zip_longest
+
+from config import GRAPHVIZ_BIN_PATH
 
 
 class NodeAttributes:  # can be replaced with a dataclass from Python 3.7
@@ -36,7 +35,6 @@ class DrawTree:
 
 
 def draw_trees(trees, node_attributes=(), outputPath='tree'):
-    GRAPHVIZ_BIN_PATH = 'C:/Program Files (x86)/Graphviz2.38/bin/'
     os.environ["PATH"] += os.pathsep + GRAPHVIZ_BIN_PATH
 
     for num, tree in enumerate(trees.keys()):

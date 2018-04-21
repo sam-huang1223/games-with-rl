@@ -1,12 +1,9 @@
 """
 
-
-
-
-
 """
 
 import numpy as np
+from visualize_graph import draw_trees
 
 class Node:
     """
@@ -20,9 +17,6 @@ class Node:
         self.neighbors = [None]*8
 
 class Connect4:
-    """
-
-    """
     def __init__(self):
         self.HEIGHT = 6
         self.WIDTH = 7
@@ -48,7 +42,7 @@ class Connect4:
 
 
     def step(self):
-        pass
+        raise NotImplementedError
 
 
     def reset_board(self):
@@ -62,6 +56,8 @@ class Connect4:
 
         def _check_neighbor():
             pass
+            # use changes in x,y to check if neighbors already created target node
+            # verify on paper that it works for all 8 neighbor cases before implementing
 
         if x < 0 or x > self.WIDTH or y < 0 or y > self.HEIGHT:
             return
@@ -94,7 +90,16 @@ class Connect4:
             _recurse(node, 7, x - 1, y)
 
     def draw(self):
-        pass
+        draw_trees(self._get_graph())
+
+    def _get_graph(self):
+        """
+        draw_trees input format {root: children}:
+        root = root node
+        children = set of {child 1, child 2, (child 3, child 3 - child 1, child 3 - child 2)...}
+        node_attributes = list of [NodeAttributes object 1, NodeAttributes object 2...]
+        """
+        raise NotImplementedError
 
 
 env = Connect4()

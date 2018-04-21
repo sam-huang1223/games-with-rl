@@ -1,11 +1,29 @@
 # Let's play with Reinforcement Learning
 
-[Table of Contents PLACEHOLDER]
+## Table of Contents
+[Overview](#overview)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[Setup](#setup)
+
+[Goals](#goals)
+
+[Roadmap](#roadmap)
+
+[Changelog](#changelog)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[April 20, 2018](#April-20,-2018)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[April 21, 2018](#April-21,-2018)
+
 
 ## Overview
+[PLACEHOLDER]
 
 ### Setup
-[PLACEHOLDER]
+**Follow instructions below to allow for visualization of game environments**
+1. Install required visualization package
+> pip install pydotplus
+2. Install the GraphViz backend using the installer found in the install_files folder. If the installation directory is not 'C:/Program Files (x86)/Graphviz2.38/bin/', then modify the GRAPHVIZ_BIN_PATH variable in config.py
 
 ## Goals
 1. Practice implementing basic RL algorithms
@@ -20,10 +38,11 @@
 4. Think through implementation of Ultimate TicTacToe (potentially much more complex than Connect4)
 
 ## Changelog
-*April 20, 2018*
+##### *April 20, 2018*
 * Consolidation of progress made
 
-*April 21, 2018*
-* Challenge: Recursively populate game board (goal: to allow for efficient implementation of heuristic evaluation compared to old Connect4 implementation) -> every recursion nodes are creating new neighboring nodes to connect to -> MaximumRecursionExceed error as program loops through board creating neighbors to connect to -> need to find a way to allow nodes to check if other neighbors already created the neighboring nodes, then if so, connect to them.
+##### *April 21, 2018*
+* Challenge #1: Recursively populate game board (goal: to allow for efficient implementation of heuristic evaluation compared to old Connect4 implementation) -> every recursion nodes are creating new neighboring nodes to connect to -> MaximumRecursionExceed error as program loops through board creating neighbors to connect to -> need to find a way to allow nodes to check if other neighbors already created the neighboring nodes, then if so, connect to them.
 * Combined _get_neighbors and _propagate -> more efficient to recurisvely generate board while checking for neighbors
 
+*April _, 2018*
