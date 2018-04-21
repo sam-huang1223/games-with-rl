@@ -1,7 +1,6 @@
 # Let's play with Reinforcement Learning
 
-## Table of Contents
-[PLACEHOLDER]
+[Table of Contents PLACEHOLDER]
 
 ## Overview
 
