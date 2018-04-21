@@ -23,3 +23,7 @@
 *April 20, 2018*
 * Consolidation of progress made
 
+*April 21, 2018*
+* Challenge: Recursively populate game board (goal: to allow for efficient implementation of heuristic evaluation compared to old Connect4 implementation) -> every recursion nodes are creating new neighboring nodes to connect to -> MaximumRecursionExceed error as program loops through board creating neighbors to connect to -> need to find a way to allow nodes to check if other neighbors already created the neighboring nodes, then if so, connect to them.
+* Combined _get_neighbors and _propagate -> more efficient to recurisvely generate board while checking for neighbors
+
