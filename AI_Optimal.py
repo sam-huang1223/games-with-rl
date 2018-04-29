@@ -12,6 +12,8 @@ The input consist of a graph represented as a list of lists of nodes and edges
     The list of edges is a list of lists in the form of [START_NODE_NAME, END_NODE_NAME]
 '''
 
+# TODO generate model for mapping every state to action (for usage for opponent, reverse piece values)
+
 constant = 100000
 
 class Node():

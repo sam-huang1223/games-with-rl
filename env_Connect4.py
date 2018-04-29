@@ -3,7 +3,8 @@
 """
 
 import numpy as np
-from visualize_graph import draw_trees
+from graph_visualizer import draw_graph, NodeAttributes
+from board_visualizer import draw_board
 
 class Node:
     """
@@ -11,10 +12,15 @@ class Node:
     Every node has up to 8 neighbors, indexed from 0-7 with 0 starting from the
     upper left corner then 1..7 moving clockwise
     """
-    def __init__(self, occupied=False, player=False):
+    def __init__(self, id, occupied=False, player=False):
+        self.id = id
         self.occupied = occupied
         self.player = player
-        self.neighbors = [None]*8
+
+        self.neighbors = [0]*8
+        self.score = 0
+        self.win_possible = False
+
 
 class Connect4:
     def __init__(self):
@@ -24,18 +30,31 @@ class Connect4:
         self.BOARD[0, :], self.BOARD[-1,:], self.BOARD[:,0], self.BOARD[:,-1] = [False]*4
         # Board represented by connections stemming from
         # self.upper_left_corner (1,1) in self.BOARD, ends at (-2,-2) in self.BOARD
+        self.ids = self._id_generator()
 
-        self.upper_left_corner = Node()
-        self.reset_board()
+        self.upper_left_corner = Node(next(self.ids))
 
-        node = self.upper_left_corner
+        ### test visualize_graph() -> output/test_graph_viz.png
+        ### test visualize_board() -> output/test_board_viz.png
+        self.upper_left_corner.neighbors = [Node(next(self.ids)) for _ in range(8)]
+        self.upper_left_corner.neighbors[0].neighbors[0] =Node(next(self.ids))
+        self.upper_left_corner.neighbors[0].neighbors[1] = Node(next(self.ids))
+        self.upper_left_corner.neighbors[0].neighbors[1].neighbors[0] = Node(next(self.ids))
+        self.upper_left_corner.neighbors[0].neighbors[5] = Node(next(self.ids))
+        #self.visualize_graph()
+        self.visualize_board()
 
-        #test
-        print(node.neighbors)
-        for _ in range(self.WIDTH):
-            node = node.neighbors[3]
-            print(node.neighbors)
+        ### test reset_board()
+        #self.reset_board()
+        #node = self.upper_left_corner
+        #print(node.neighbors)
+        #for _ in range(self.WIDTH):
+        #    node = node.neighbors[3]
+        #    print(node.neighbors)
 
+    def _id_generator(self):
+        for i in range(1, self.WIDTH*self.HEIGHT + 1):  # 1 id for each node
+            yield i
 
     def heuristic_eval(self):
         raise NotImplementedError
@@ -51,7 +70,7 @@ class Connect4:
     def _propagate(self, node, x, y):  # if 2 functions have the same inputs, they can likely be merged
         def _recurse(node, neighbor, x, y):
             if not node.neighbors[neighbor]:
-                node.neighbors[neighbor] = Node()
+                node.neighbors[neighbor] = Node(next(self.ids))
                 self._propagate(node.neighbors[neighbor], x, y)
 
         def _check_neighbor():
@@ -89,17 +108,12 @@ class Connect4:
         if left_col:
             _recurse(node, 7, x - 1, y)
 
-    def draw(self):
-        draw_trees(self._get_graph())
+    def visualize_graph(self, output_path='output/test_graph_viz.png'):  # ensure filename ends with .png
+        draw_graph(root=self.upper_left_corner, node_obj_representation=Node, output_path=output_path)
 
-    def _get_graph(self):
-        """
-        draw_trees input format {root: children}:
-        root = root node
-        children = set of {child 1, child 2, (child 3, child 3 - child 1, child 3 - child 2)...}
-        node_attributes = list of [NodeAttributes object 1, NodeAttributes object 2...]
-        """
-        raise NotImplementedError
+    def visualize_board(self):
+        """ Created to visualize the state of a game board via a charting tool (e.g. bokeh) """
+        draw_board(self.WIDTH, self.HEIGHT, self.upper_left_corner)
 
 
 env = Connect4()

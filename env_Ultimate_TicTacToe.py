@@ -1,3 +1,9 @@
+"""
+Build environment with 3D node connections -
+top layer - 9 connected nodes
+bottom layer - 9 connected nodes for each connected node in the top layer (all connected to top node)
+"""
+
 from visualize_graph import draw_trees
 
 

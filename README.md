@@ -42,10 +42,10 @@ Welcome to my primary project for the summer of 2018. I'm super excited to learn
 
     **Problem**: Every recursion, nodes are creating new neighboring nodes to connect to
 
-    &rarr; MaximumRecursionExceed error as program loops through board creating neighbors to connect to
+    &rarr; MaximumRecursionExceed error as program infinitely loops through board creating neighbors to connect to
 
-    &rarr; Need to find a way to allow nodes to check if other neighbors already created the neighboring nodes, then if so, connect to them
+    &rarr; Need to find a way to allow nodes to check if other neighbors already created neighboring nodes, then if so, connect to them
 
-* Combined _get_neighbors and _propagate -> more efficient to recurisvely generate board while checking for neighbors
+* Combined _get_neighbors and _propagate &rarr; more efficient to recurisvely generate board *while* checking for neighbors instead of *after*
 
 ##### *April _, 2018*
