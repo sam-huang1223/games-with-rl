@@ -1,3 +1,5 @@
+# TODO TEST OLD CODE AND REWRITE
+
 """
 Minimax Search with Alpha Beta Pruning allows for optimal play
 """
@@ -12,7 +14,7 @@ The input consist of a graph represented as a list of lists of nodes and edges
     The list of edges is a list of lists in the form of [START_NODE_NAME, END_NODE_NAME]
 '''
 
-# TODO generate model for mapping every state to action (for usage for opponent, reverse piece values)
+# TODO generate model for mapping every state to action (for usage for opponent, reverse piece values) - ALLOW FOR FASTER RUNTIME FOR RL ALGORITHMS
 
 constant = 100000
 

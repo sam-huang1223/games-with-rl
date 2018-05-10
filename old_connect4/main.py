@@ -1,4 +1,4 @@
-import Connect4
+from . import Connect4
 
 #Connect4.play(algo_selection='MCTS')
 Connect4.play(algo_selection='alpha beta pruning')

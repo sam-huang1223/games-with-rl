@@ -20,7 +20,6 @@ Next steps:
 import os
 
 import pydotplus as pydot
-from itertools import zip_longest
 
 from config import GRAPHVIZ_BIN_PATH
 

@@ -34,24 +34,6 @@ class Connect4:
 
         self.upper_left_corner = Node(next(self.ids))
 
-        ### test visualize_graph() -> output/test_graph_viz.png
-        ### test visualize_board() -> output/test_board_viz.png
-        self.upper_left_corner.neighbors = [Node(next(self.ids)) for _ in range(8)]
-        self.upper_left_corner.neighbors[0].neighbors[0] =Node(next(self.ids))
-        self.upper_left_corner.neighbors[0].neighbors[1] = Node(next(self.ids))
-        self.upper_left_corner.neighbors[0].neighbors[1].neighbors[0] = Node(next(self.ids))
-        self.upper_left_corner.neighbors[0].neighbors[5] = Node(next(self.ids))
-        #self.visualize_graph()
-        self.visualize_board()
-
-        ### test reset_board()
-        #self.reset_board()
-        #node = self.upper_left_corner
-        #print(node.neighbors)
-        #for _ in range(self.WIDTH):
-        #    node = node.neighbors[3]
-        #    print(node.neighbors)
-
     def _id_generator(self):
         for i in range(1, self.WIDTH*self.HEIGHT + 1):  # 1 id for each node
             yield i

@@ -3,7 +3,7 @@ import numpy as np
 from collections import Counter
 from copy import deepcopy
 
-from algorithms import MCTS, Alpha_Beta_Pruning
+from .algorithms import MCTS, Alpha_Beta_Pruning
 
 # TODO look into visualizing connect4 board
 
