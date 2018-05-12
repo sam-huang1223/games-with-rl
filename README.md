@@ -17,16 +17,22 @@ Welcome to my primary project for the summer of 2018. I'm super excited to learn
 
 &nbsp;&nbsp;&nbsp;&nbsp;[May 10, 2018 - Visualizing as a Graph](#may-10-2018)
 
+&nbsp;&nbsp;&nbsp;&nbsp;[May 12, 2018 - Visualizing on a Graph Instead](#may-12-2018)
+
 
 ## Setup Instructions
-**Follow instructions below to allow for visualization of game environment**
+**Follow instructions below to allow for visualization of game environments**
 1. Install required package
 > pip install bokeh
 
 **Follow instructions below to allow for visualization of game trees**
 1. Install required package
+
 > pip install pydotplus
-2. Install the GraphViz backend using the installer found in the install_files folder. If the installation directory is not 'C:/Program Files (x86)/Graphviz2.38/bin/', then modify the GRAPHVIZ_BIN_PATH variable in config.py
+
+2. Download the GraphViz backend from the [GraphViz Website](https://graphviz.gitlab.io/download/). Install the executable found in the stable installs section
+
+3. If the installation directory is not 'C:/Program Files (x86)/Graphviz#.##/bin/', then modify the GRAPHVIZ_BIN_PATH variable in config.py
 
 ## Goals
 1. Practice implementing basic RL algorithms
@@ -40,13 +46,13 @@ Welcome to my primary project for the summer of 2018. I'm super excited to learn
 3. Think through implementation of Ultimate TicTacToe (potentially much more computationally complex than Connect4)
 
 ## Changelog
-##### *April 20, 2018*
+#### *April 20, 2018*
 *The Beginning*
 * Consolidation of progress made
 
 <br>
 
-##### *April 21, 2018*
+#### *April 21, 2018*
 *Graph not Array*
 * **Challenge #1**: Recursively build graph-based game board
     
@@ -62,7 +68,7 @@ Welcome to my primary project for the summer of 2018. I'm super excited to learn
 
 <br>
 
-##### *May 10, 2018*
+#### *May 10, 2018*
 *Visualizing as a Graph*
 * **Challenge #2**: Design a generalizable method for visualizing game environments 
 
@@ -74,5 +80,13 @@ Welcome to my primary project for the summer of 2018. I'm super excited to learn
 
 <br>
 
-##### *May _, 2018*
-*Visualize on a Graph*
+#### *May 12, 2018*
+*Visualizing on a Graph Instead*
+* **Challenge #2** Solved - Bokeh (data visualization tool) is an effective and generalizable way to display game environments
+    
+* Refactored and cleaned up code - time to address **Challenge #1** as I cannot integrate the visualization tool until I progress on building the actual Connect 4 environment
+
+<br>
+
+#### *May _, 2018*
+*Meeting the Neighbors*

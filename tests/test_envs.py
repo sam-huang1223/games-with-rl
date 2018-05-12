@@ -4,7 +4,7 @@ import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # above code allows for imports from files in the parent directory
 
-from env_Connect4 import Connect4, Node
+from environments.env_Connect4 import Connect4, Node
 
 def test_visualize_graph():
     ### outputs to output/test_graph_viz.png
