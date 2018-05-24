@@ -19,13 +19,15 @@ Welcome to my primary project for the summer of 2018. I'm super excited to learn
 
 &nbsp;&nbsp;&nbsp;&nbsp;[May 12, 2018 - Visualizing on a Graph Instead](#may-12-2018)
 
+&nbsp;&nbsp;&nbsp;&nbsp;[May 24, 2018 - Meeting the Neighbors](#may-24-2018)
+
 
 ## Setup Instructions
 **Follow instructions below to allow for visualization of game environments**
 1. Install required package
 > pip install bokeh
 
-**Follow instructions below to allow for visualization of game trees**
+**Follow instructions below to allow for visualization of move history tree**
 1. Install required package
 
 > pip install pydotplus
@@ -41,9 +43,10 @@ Welcome to my primary project for the summer of 2018. I'm super excited to learn
 4. Profit???
 
 ## Roadmap
-1. Implement Connect4 game environment
+1. Implement TicTacToe game environment
 2. Implement QLearning algorithm (traditional table-based version)
-3. Think through implementation of Ultimate TicTacToe (potentially much more computationally complex than Connect4)
+3. Implement Connect4 game environment based on TicTacToe environment
+4. Think through implementation of Ultimate TicTacToe (potentially much more computationally complex than Connect4)
 
 ## Changelog
 #### *April 20, 2018*
@@ -82,11 +85,25 @@ Welcome to my primary project for the summer of 2018. I'm super excited to learn
 
 #### *May 12, 2018*
 *Visualizing on a Graph Instead*
-* **Challenge #2** Solved - Bokeh (data visualization tool) is an effective and generalizable way to display game environments
+* **Challenge #2** solved - Bokeh (data visualization tool) is an effective and generalizable way to display game environments
     
 * Refactored and cleaned up code - time to address **Challenge #1** as I cannot integrate the visualization tool until I progress on building the actual Connect 4 environment
 
 <br>
 
+#### *May 24, 2018*
+*Back to Square One*
+
+* **Challenge #1** solved - I stored references to nodes in an array, and checked against array to determine whether I need to create new neighboring nodes. I created a simpler game environment (TicTacToe) to test this solution
+
+* Board visualizer with bokeh integrated with TicTacToe environment
+
+* Graph visualizer code is now redundant given bokeh visualization solution - I'm thinking I can use it to visualize move history trees instead later on
+
+* Modified project goals - I'll finish the entire TicTacToe environment first before moving to Connect4. This will make my life easier as the Connect4 environment is essentially a larger version of the TicTacToe environment
+
+<br>
+
 #### *May _, 2018*
-*Meeting the Neighbors*
+*Taking a Step*
+

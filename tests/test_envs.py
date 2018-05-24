@@ -4,32 +4,28 @@ import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # above code allows for imports from files in the parent directory
 
-from environments.env_Connect4 import Connect4, Node
+from environments.env_TicTacToe import TicTacToe, Node
+
+# make use of setup functions
 
 def test_visualize_graph():
     ### outputs to output/test_graph_viz.png
-    env = Connect4()
-    env.upper_left_corner.neighbors = [Node(next(env.ids)) for _ in range(8)]
-    env.upper_left_corner.neighbors[0].neighbors[0] = Node(next(env.ids))
-    env.upper_left_corner.neighbors[0].neighbors[1] = Node(next(env.ids))
-    env.upper_left_corner.neighbors[0].neighbors[1].neighbors[0] = Node(next(env.ids))
-    env.upper_left_corner.neighbors[0].neighbors[5] = Node(next(env.ids))
-    env.visualize_graph()
-
-
-@pytest.mark.skip(reason="reset_board function incomplete due to unsolved challenge #1")
-def test_reset_board():
-    env = Connect4()  # can parameterize env once more game environments are complete
+    env = TicTacToe()
     env.reset_board()
-    node = env.upper_left_corner
-    print(node.neighbors)
-    for _ in range(env.WIDTH):
-        node = node.neighbors[3]
-        print(node.neighbors)
+    env.visualize_graph(output_path='output/test_tictactoe_graph_viz.html')
 
 
-@pytest.mark.skip(reason="visualize_board is incomplete")
+def test_reset_board():
+    env = TicTacToe()  # can parameterize env once more game environments are complete
+    env.reset_board()
+    assert sum(1 for e in env.BOARD_UPPER_LEFT_CORNER.neighbors[4].neighbors if e) == 8
+    assert sum(1 for e in env.BOARD_UPPER_LEFT_CORNER.neighbors if e) == 3
+    assert sum(1 for e in env.BOARD_UPPER_LEFT_CORNER.neighbors[4].neighbors[4].neighbors if e) == 3
+
+
 def test_visualize_board():
     ### output/test_board_viz.png
-    env = Connect4()
-    env.visualize_board()
+    env = TicTacToe()
+    env.reset_board()
+    ## INCOMPLETE
+    env.visualize_board(output_path='output/test_tictactoe_board_viz.html')

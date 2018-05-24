@@ -4,7 +4,7 @@
 
 import numpy as np
 from visualization.graph_visualizer import draw_graph
-from visualization.board_visualizer import draw_board
+from visualization.board_visualizer import DrawBoard
 
 class Node:
     """
@@ -17,15 +17,20 @@ class Node:
         self.occupied = occupied
         self.player = player
 
-        self.neighbors = [0]*8
-        self.score = 0
-        self.win_possible = False
+        self.neighbors = np.empty(8, dtype=object)
+        self.score = [0]*8  # -1 if win is not possible in that direction
+
+
+    ## TODO - remove self.BOARD, use l/w values in recursion to control size, use self.BOARD to keep references to initialized nodes
 
 
 class Connect4:
     def __init__(self):
         self.HEIGHT = 6
         self.WIDTH = 7
+
+        self.BOARDTEST = np.empty((self.HEIGHT, self.WIDTH), dtype=object)
+
         self.BOARD = np.ones((self.HEIGHT + 2, self.WIDTH + 2), dtype=np.bool)  # 6 rows, 7 columns
         self.BOARD[0, :], self.BOARD[-1,:], self.BOARD[:,0], self.BOARD[:,-1] = [False]*4
         # Board represented by connections stemming from
@@ -38,7 +43,8 @@ class Connect4:
         for i in range(1, self.WIDTH*self.HEIGHT + 1):  # 1 id for each node
             yield i
 
-    def heuristic_eval(self):
+    def reward_eval(self):
+        """Only used by RL algorithms that require non-binary reward functions"""
         raise NotImplementedError
 
 
@@ -49,6 +55,12 @@ class Connect4:
     def reset_board(self):
         self._propagate(self.upper_left_corner, x=1, y=1)
 
+
+    def _propagate(self, node, x, y):
+        if not node.neighbors[0]:
+            pass
+
+    """
     def _propagate(self, node, x, y):  # if 2 functions have the same inputs, they can likely be merged
         def _recurse(node, neighbor, x, y):
             if not node.neighbors[neighbor]:
@@ -89,13 +101,18 @@ class Connect4:
 
         if left_col:
             _recurse(node, 7, x - 1, y)
+    """
 
-    def visualize_graph(self, output_path='output/test_graph_viz.png'):  # ensure filename ends with .png
+    def visualize_graph(self, output_path='../output/test_connect4_graph_viz.png'):  # ensure filename ends with .png
         draw_graph(root=self.upper_left_corner, node_obj_representation=Node, output_path=output_path)
 
     def visualize_board(self):
         """ Created to visualize the state of a game board via a charting tool (e.g. bokeh) """
-        draw_board(self.WIDTH, self.HEIGHT, self.upper_left_corner)
+        parameters = {'width': self.WIDTH, 'height': self.HEIGHT, 'root': self.upper_left_corner,
+                      'output_path':"../output/test_connect4_board_viz.html"}
+        DrawBoard(params=parameters)
 
-
-env = Connect4()
+if __name__ == '__main__':
+    env = Connect4()
+    env.reset_board()
+    #env.visualize_board() will not work until converted to TicTacToe environment structure

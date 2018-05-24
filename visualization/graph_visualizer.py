@@ -17,6 +17,9 @@ Next steps:
 2) Test if this algorithm works with no neighbors (i.e. empty ~ [])
 """
 
+### Made redundant by bokeh board visualization - need to find alternative use for this code
+### (perhaps visualizing move history?)
+
 import os
 
 import pydotplus as pydot
@@ -62,7 +65,7 @@ def convert_to_graph_representation(root, node_obj_representation):
         return output
 
     for child_num, child in enumerate(root.neighbors):
-        if child != 0:
+        if child:
             output.append(convert_to_graph_representation(child, node_obj_representation))
         else:
             output.append("{root}-{child_num}".format(root=root.id, child_num=child_num))
