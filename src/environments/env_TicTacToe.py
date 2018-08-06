@@ -1,6 +1,6 @@
 import numpy as np
-from visualization.graph_visualizer import draw_graph
-from visualization.board_visualizer import DrawBoard
+from ..visualization.graph_visualizer import draw_graph
+from ..visualization.board_visualizer import DrawBoard
 
 class Node:
     """
@@ -8,12 +8,11 @@ class Node:
     Every node has up to 8 neighbors, indexed from 0-7 with 0 starting from the
     upper left corner then 1..7 moving clockwise
     """
-    def __init__(self, id, x=None, y=None, occupied=False, player=False):
+    def __init__(self, id, x=None, y=None, player=None):
         self.id = id
         self.x = x
         self.y = y
-        self.occupied = occupied
-        self.player = player
+        self.player = player  # -1 for AI, 1 for player, None for empty
 
         self.neighbors = np.empty(8, dtype=object)
         self.score = [0]*3  # -1 if win is not possible in that direction
@@ -28,11 +27,11 @@ class TicTacToe:
         self.WIDTH = 3
         self.NEIGHBORS_X_DELTA = [-1, 0, 1, 1, 1, 0, -1, -1]  # x-coordinate delta from center node for neighbor [INDEX]
         self.NEIGHBORS_Y_DELTA = [-1, -1, -1, 0, 1, 1, 1, 0]  # y-coordinate delta from center node for neighbor [INDEX]
-        self.BOARD = np.empty((self.HEIGHT, self.WIDTH), dtype=object)
 
         self.ids = self._id_generator()
 
         self.BOARD_UPPER_LEFT_CORNER = Node(next(self.ids), x=0, y=0)
+        self.BOARD = np.empty((self.HEIGHT, self.WIDTH), dtype=object)
         self.BOARD[0][0]= self.BOARD_UPPER_LEFT_CORNER
 
     def _id_generator(self):
@@ -44,15 +43,21 @@ class TicTacToe:
         raise NotImplementedError
 
     def step(self, player_move):
-        raise NotImplementedError
+        '''player_move is a tuple of (x,y) coordinates representing offset from the top left corner of the array (0,0)'''
         # update board based on player move
+        self.BOARD[player_move[1]][player_move[0]].player = 1
+
         # get optimal move from AI
         # update board based on AI move -> get new state, moves available
         # calculate reward
         # determine end
         # return state, moves available, reward, end
 
+    def _AI_initializer(self):
+        raise NotImplementedError
+
     def reset_board(self):
+        """Recursively populates the graph given starting node and board dimensions"""
         self._propagate(self.BOARD_UPPER_LEFT_CORNER)
 
     def _propagate(self, node):
@@ -69,23 +74,15 @@ class TicTacToe:
                         self.BOARD[new_y][new_x] = node.neighbors[idx]
                         self._propagate(self.BOARD[new_y][new_x])
 
+    def print_board(self):
+        print(np.array([[node.player for node in row] for row in self.BOARD]))
+
     def visualize_graph(self, output_path='output/test_tictactoe_graph_viz.png'):  # ensure filename ends with .png
         draw_graph(root=self.BOARD_UPPER_LEFT_CORNER, node_obj_representation=Node, output_path=output_path)
 
-    def visualize_board(self, output_path="../output/test_tictactoe_board_viz.html"):
+    def visualize_board(self, output_path="output/test_tictactoe_board_viz.html"):
         """ Created to visualize the state of a game board via a charting tool (e.g. bokeh) """
         parameters = {'width': self.WIDTH, 'height': self.HEIGHT, 'board': self.BOARD,
                       'output_path':output_path}
         DrawBoard(params=parameters)
 
-
-if __name__ == '__main__':
-    env = TicTacToe()
-    env.reset_board()
-    env.BOARD[2,2].occupied = True
-    env.BOARD[0,2].occupied = True
-    env.BOARD[1,1].occupied = True
-    env.BOARD[1,1].player = True
-
-    print(env.BOARD)
-    env.visualize_board()

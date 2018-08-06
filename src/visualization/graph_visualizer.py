@@ -1,4 +1,6 @@
 """
+BREAKS
+
 REQUIRES SETUP - see README
 
 Given the root of a graph, the object that represents a node in the graph, and the output file path, this

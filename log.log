@@ -1,0 +1,4 @@
+2018-08-06 00:14:15,926 - src - INFO - Completed configuring logger()!
+2018-08-06 00:14:16,187 - src.algorithms.optimal_agent - INFO - [[None None None]
+ [None None None]
+ [None None None]]

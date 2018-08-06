@@ -11,25 +11,22 @@ class DrawBoard:
         # add a circle renderer with a size, color, and alpha
         for l in params['board']:
             for node in l:
-                if node.occupied:
-                    if node.player:
-                        color='red'
-                    else:
-                        color='black'
-                    self.p.circle(node.x+0.5, node.y+0.5, size=self.CIRCLE_SIZE, color=color)
+                if node.player == 1:
+                    color='red'  # player piece
+                elif node.player == -1:
+                    color='black'  # AI piece
+                elif not node.player:
+                    color='white'  # empty
+                else:
+                    raise EnvironmentError
+                self.p.circle(node.x+0.5, node.y+0.5, size=self.CIRCLE_SIZE, color=color)
 
         # show the results
         show(self.p)
 
-        ## write function to visualize circles 1 by 1 while recursing through graph
-
     def _connect4_config(self, width, height, output_path):
         # output to static HTML file
         output_file(output_path)
-
-        # set up empty spaces
-        # bad code - setting up more white circles than necessary in game environments smaller than connect4 (e.g. tictactoe)
-        self.p.circle([0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5]*6, [0.5]*7+[1.5]*7+[2.5]*7+[3.5]*7+[4.5]*7+[5.5]*7, size=self.CIRCLE_SIZE, color="white")
 
         self.p.background_fill_color = 'blue'
         self.p.background_fill_alpha = 0.75

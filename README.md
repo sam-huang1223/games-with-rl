@@ -19,7 +19,7 @@ Welcome to my primary project for the summer of 2018. I'm super excited to learn
 
 &nbsp;&nbsp;&nbsp;&nbsp;[May 12, 2018 - Visualizing on a Graph Instead](#may-12-2018)
 
-&nbsp;&nbsp;&nbsp;&nbsp;[May 24, 2018 - Meeting the Neighbors](#may-24-2018)
+&nbsp;&nbsp;&nbsp;&nbsp;[May 24, 2018 - Back to Square One](#may-24-2018)
 
 
 ## Setup Instructions
@@ -107,3 +107,4 @@ Welcome to my primary project for the summer of 2018. I'm super excited to learn
 #### *May _, 2018*
 *Taking a Step*
 
+Could: generate model for mapping every state to action (for usage for opponent, reverse piece values) - ALLOW FOR FASTER RUNTIME FOR RL ALGORITHMS
