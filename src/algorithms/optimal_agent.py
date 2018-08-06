@@ -2,6 +2,7 @@
 import logging
 logger = logging.getLogger(__name__)
 from dataclasses import dataclass
+from copy import deepcopy
 
 from ..visualization.tree_display import Tree
 from ..environments.TicTacToe import State, TicTacToe
@@ -19,7 +20,5 @@ class MinimaxAgent:
         #tree = Tree(self.root)
         
         env = TicTacToe()
-        self.root = Node(state=env.state) 
-        logger.info(env.state)
-        
-        # state associated with every node
+        self.current_state = Node(state=deepcopy(env.state)) 
+

@@ -6,6 +6,7 @@ import numpy as np
 class State:  # True represents player, False represents AI
     state: np.array
     turn: bool
+    value: float = None  # will include other parameters used by alpha beta pruning
 
 class TicTacToe:
     def __init__(self):

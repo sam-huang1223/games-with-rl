@@ -6,7 +6,7 @@ from config import GRAPHVIZ_BIN_PATH
 
 class Tree:
     def __init__(self, root):
-        os.environ["PATH"] += os.pathsep + GRAPHVIZ_BIN_PATH
+        os.environ["PATH"] += os.pathsep + GRAPHVIZ_BIN_PATH  # allow for usage oh graphviz
 
         self.tree = pydot.Dot(graph_type='digraph')
         self.root = root
